@@ -1,4 +1,6 @@
 import streamlit as st
+
+from supabase import create_client
 pg = st.navigation([
     st.Page('pages/home.py',title="Home"),
     st.Page('pages/calculator.py',title= "Calculator"),
@@ -9,7 +11,7 @@ pg = st.navigation([
 pg.run()
 
 
-from supabase import create_client
+
 
 supabase = create_client(
     st.secrets["SUPABASE_URL"],
