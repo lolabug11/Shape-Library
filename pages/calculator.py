@@ -24,7 +24,7 @@ y = None
 z = None
 if default_shapes[shape]["number of inputs"] == 1:
     x = st.number_input(f'{default_shapes[shape]["name for the inputs"][0]}',value= 0.0,step= 0.001, max_value= float(2**64-1),min_value = float(-2**64-1), format="%.3f",help= "Enter the input to you equation")
-    if x >= 2**64-1:
+    if  x>= 2**64-1 or x <= -2**64-1:
         st.write("Your number is to large enter a new number")
     else:
         result = round(eval(default_shapes[shape]["formula"],{"x":x}),3)
@@ -32,7 +32,7 @@ if default_shapes[shape]["number of inputs"] == 1:
 elif default_shapes[shape]["number of inputs"] == 2:
     x = st.number_input(f'{default_shapes[shape]["name for the inputs"][0]}',value= 0.0,step= 0.001, max_value= float(2**64-1),min_value = float(-2**64-1), format="%.3f",help= "Enter the first input to you equation")
     y = st.number_input(f'{default_shapes[shape]["name for the inputs"][1]}',value= 0.0,step= 0.001, max_value= float(2**64-1),min_value = float(-2**64-1), format="%.3f",help= "Enter the second input to you equation",)
-    if x >= 2**64-1 or y>= 2**64-1:
+    if x >= 2**64-1 or y>= 2**64-1 or x <= -2**64-1 or y< -2**64-1:
         st.write("One of your inputs is to large enter smaller inputs")
     else:
         result = round(eval(default_shapes[shape]["formula"],{"x":x,"y":y}),3)
@@ -41,7 +41,7 @@ elif default_shapes[shape]["number of inputs"] == 3:
     x = st.number_input(f'{default_shapes[shape]["name for the inputs"][0]}',value= 0.0,step= 0.001, max_value= float(2**64-1),min_value = float(-2**64-1), format="%.3f",help= "Enter the first input to you equation")
     y = st.number_input(f'{default_shapes[shape]["name for the inputs"][1]}',value= 0.0,step= 0.001, max_value= float(2**64-1),min_value = float(-2**64-1), format="%.3f",help= "Enter the second input to you equation")
     z = st.number_input(f'{default_shapes[shape]["name for the inputs"][2]}',value= 0.0,step= 0.001, max_value= float(2**64-1),min_value = float(-2**64-1), format="%.3f",help= "Enter the second input to you equation")
-    if x >= 2**64-1 or y>= 2**64-1 or z>=2**64-1:
+    if x >= 2**64-1 or y>= 2**64-1 or z >= 2^64-1 or x <= -2**64-1 or y<= -2**64-1 or z<=-2**64-1:
         st.write("One of your inputs is to large enter smaller inputs")
     else:
         result = round(eval(default_shapes[shape]["formula"],{"x":x,"y":y,z:"z"}),3)
