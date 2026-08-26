@@ -1,5 +1,6 @@
 import streamlit as st
 import json
+from math import sqrt
 st.header("Calculator")
 
 with open("defaultShapes.json","r") as file:
@@ -40,16 +41,17 @@ if default_shapes[shape]["number of inputs"] == 1:
         st.write("Your number is to large enter a new number")
     else:
 
-        result = round(eval(default_shapes[shape]["formula"],{"x1": x}),3)
-        st.write(f"The {default_shapes[shape]["formula type"]} of your {shape} is {result} units")
+        result = round(eval(default_shapes[shape]["formula"],{"x1": x,"sqrt":sqrt}),3)
+        st.write(f"The {default_shapes[shape]['formula type']} of your {shape} is {result} units")
 elif default_shapes[shape]["number of inputs"] == 2:
     x = st.number_input(f'{default_shapes[shape]["name for the inputs"][0]}',value= 0.0,step= 0.001, max_value= float(2**64-1),min_value = float(-2**64-1), format="%.3f",help= "Enter the first input to you equation")
     y = st.number_input(f'{default_shapes[shape]["name for the inputs"][1]}',value= 0.0,step= 0.001, max_value= float(2**64-1),min_value = float(-2**64-1), format="%.3f",help= "Enter the second input to you equation",)
     if x >= 2**64-1 or y>= 2**64-1 or x <= -2**64-1 or y< -2**64-1:
         st.write("One of your inputs is to large enter smaller inputs")
     else:
-        result = round(eval(default_shapes[shape]["formula"],{"x1":x,"x2":y}),3)
-        st.write(f"The {default_shapes[shape]["formula type"]} of your {shape} is {result} units")
+        result = round(eval(default_shapes[shape]["formula"], {
+                       "x1": x, "x2": y, "sqrt": sqrt, "sqrt": sqrt}), 3)
+        st.write(f"The {default_shapes[shape]['formula type']} of your {shape} is {result} units")
 elif default_shapes[shape]["number of inputs"] == 3:
     x = st.number_input(f'{default_shapes[shape]["name for the inputs"][0]}',value= 0.0,step= 0.001, max_value= float(2**64-1),min_value = float(-2**64-1), format="%.3f",help= "Enter the first input to you equation")
     y = st.number_input(f'{default_shapes[shape]["name for the inputs"][1]}',value= 0.0,step= 0.001, max_value= float(2**64-1),min_value = float(-2**64-1), format="%.3f",help= "Enter the second input to you equation")
@@ -57,5 +59,6 @@ elif default_shapes[shape]["number of inputs"] == 3:
     if x >= 2**64-1 or y>= 2**64-1 or z >= 2^64-1 or x <= -2**64-1 or y<= -2**64-1 or z<=-2**64-1:
         st.write("One of your inputs is to large enter smaller inputs")
     else:
-        result = round(eval(default_shapes[shape]["formula"],{"x1":x,"x2":y,"x3":z}),3)
-        st.write(f"The {default_shapes[shape]["formula type"]} of your {shape} is {result} units")
+        result = round(eval(default_shapes[shape]["formula"], {
+                       "x1": x, "x2": y, "x3": z, "sqrt": sqrt}), 3)
+        st.write(f"The {default_shapes[shape]['formula type']} of your {shape} is {result} units")

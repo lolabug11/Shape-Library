@@ -61,12 +61,13 @@ class shape_card:
         number_identifyer = False
         new_formula = ''
         for char in formula:
+
             if char.lower() == "x":
                 x_identifyer = True
             else:
                 if x_identifyer:
-                    print(name_of_inputs[0])
-                    new_formula += f' {name_of_inputs.pop(0)}'
+
+                    new_formula += f' {name_of_inputs[int(char)-1]}'
                     x_identifyer = False
                 else:
                     new_formula += f' {char}'
@@ -81,6 +82,9 @@ for shape in range(len(response.data)):
     shape = response.data[shape]
     shape['name'] += " "
     if search in shape['name'] or shape['name'] in search:
+
         formula_with_correct_names = shape_card.get_correct_names(shape['formula'],list(shape['name_of_inputs']))
+        st.write(shape_id)
+        st.write(shape['name'])
         shape_shapecard = shape_card(shape['name'],shape['formula'],formula_with_correct_names,shape['formula_type'],shape['number_of_inputs'],list(shape['name_of_inputs']),f"{shape_id}{shape['name']}" )
         shape_shapecard.create_card()

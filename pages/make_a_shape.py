@@ -10,7 +10,7 @@ def test_formula(formula):
         "x",
         "(", ")",
         ".",
-        "*", "/", "+", "-"
+        "*", "/", "+", "-", " "
     ]
 
     # Check length
