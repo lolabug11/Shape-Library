@@ -1,7 +1,10 @@
 import streamlit as st
 import json
 from supabase_client import supabase
+
+
 def test_formula(formula):
+
     allowed_chars = [
         "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
         "x",
@@ -10,12 +13,26 @@ def test_formula(formula):
         "*", "/", "+", "-"
     ]
 
+    # Check length
+    if len(formula) > 100:
+        return False
+
+    # Check sqrt usage
+    while "sqrt" in formula:
+        position = formula.find("sqrt")
+
+        # Make sure sqrt is followed by (
+        if position + 4 >= len(formula) or formula[position + 4] != "(":
+            return False
+
+        # Remove this sqrt so we can check the rest
+        formula = formula[:position] + formula[position + 4:]
+
+    # Check remaining characters
     for char in formula:
         if char not in allowed_chars:
             return False
-        
-    if len(formula) > 100:
-        return False
+
     return True
 def reset_form():
     st.session_state["name"] = ""
