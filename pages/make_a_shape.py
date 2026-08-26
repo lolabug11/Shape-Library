@@ -2,6 +2,20 @@ import streamlit as st
 import json
 from supabase_client import supabase
 def test_formula(formula):
+    allowed_chars = [
+        "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+        "x",
+        "(", ")",
+        ".",
+        "*", "/", "+", "-"
+    ]
+
+    for char in formula:
+        if char not in allowed_chars:
+            return False
+        
+    if len(formula) > 100:
+        return False
     return True
 def reset_form():
     st.session_state["name"] = ""
@@ -23,9 +37,9 @@ if "number_of_inputs" not in st.session_state:
     st.session_state["number_of_inputs"] = 1
 if "reset_form" not in st.session_state:
     st.session_state["reset_form"] = False
-if st.button("Home"):
+if st.button("Home", key= "Home button Make"):
     st.switch_page('pages/home.py')
-st.write("Work in progress")
+
 
 
 if st.session_state["reset_form"]:
@@ -33,7 +47,7 @@ if st.session_state["reset_form"]:
     st.session_state["reset_form"] = False
 
 
-number_of_inputs = st.number_input(f"How many inputs does your formula have?",help= "Like for Base * height this would be 2. One for base, and one for height.",value=1,min_value= 1,key= 'number_of_inputs')
+number_of_inputs = st.number_input(f"How many inputs does your formula have? (Read the help!)",help= "Like for Base * height this would be 2. One for base, and one for height.",value=1,min_value= 1,key= 'number_of_inputs',max_value=10)
 with st.form("shape_creation_form"):
     shape_name = st.text_input("What is the name of your custom shape",key= 'name')
     formula_type = st.selectbox(
@@ -41,13 +55,13 @@ with st.form("shape_creation_form"):
         ["Area","Perimiter","Surface Area","Volume"],
         key= 'formula_type'
     )
-    formula = st.text_input(f"What is the formula for your shape", help="Use 3.141 for pi. Seperate all signs by a space so like x * y / 6. Use x1 x2 x3 . . . instead of var names, youll name it later.",key= 'formula')
+    formula = st.text_input(f"What is the formula for your shape? (Read the help!)", help="Use `3.141` for pi. Put a space between each operator, like `x1 * x2 / 6`. Use `x1`, `x2`, `x3`, etc. instead of variable names. You'll give each input a name separately later.",key= 'formula')
     list_of_names = []
     for i in range(number_of_inputs):
         new_name = st.text_input(f"What is the x{i+1} input called?")
         list_of_names.append(new_name)
 
-    submitted = st.form_submit_button('Submit')
+    submitted = st.form_submit_button('Submit',key="Form Submit")
 if submitted:
     safe_formula = test_formula(formula)
 
