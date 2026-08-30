@@ -81,8 +81,13 @@ for shape in range(len(response.data)):
     shape['name'] += " "
     if search in shape['name'] or shape['name'] in search:
 
+<<<<<<< HEAD
         formula_with_correct_names = shape_card.get_correct_names(
             shape['formula'], list(shape['name_of_inputs']))
         shape_shapecard = shape_card(shape['name'], shape['formula'], formula_with_correct_names, shape['formula_type'],
                                      shape['number_of_inputs'], list(shape['name_of_inputs']), f"{shape_id}{shape['name']}")
+=======
+        formula_with_correct_names = shape_card.get_correct_names(shape['formula'],list(shape['name_of_inputs']))
+        shape_shapecard = shape_card(shape['name'],shape['formula'],formula_with_correct_names,shape['formula_type'],shape['number_of_inputs'],list(shape['name_of_inputs']),f"{shape_id}{shape['name']}" )
+>>>>>>> a1e69fcdfcd8a3b60c39629a83b78f0ec93eefc2
         shape_shapecard.create_card()
