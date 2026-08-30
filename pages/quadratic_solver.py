@@ -5,7 +5,7 @@ import pandas as pd
 from math import sqrt
 from fractions import Fraction
 import numpy as np
-
+st.header("Quadratic Solver")
 if st.button("Home", key="Home button quadratic"):
     st.switch_page('pages/home.py')
 

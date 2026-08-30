@@ -6,7 +6,9 @@ pg = st.navigation([
     st.Page('pages/calculator.py',title= "Calculator"),
     st.Page('pages/make_a_shape.py',title= "Make a Shape"),
     st.Page('pages/community_shapes.py',title= 'Community Shapes'),
-    st.Page('pages/quadratic_solver.py',title= 'Quadratic Solver')
+    st.Page('pages/quadratic_solver.py',title= 'Quadratic Solver'),
+    st.Page('pages/matrix.py',title= "Matrix"),
+    st.Page('pages/graph.py',title="Graph")
 ],position="hidden")
 
 pg.run()
