@@ -13,11 +13,14 @@ with calculator_col:
     with middle_col:
         if st.button("Calculator"):
             st.switch_page("pages/calculator.py")
+        
 with community_shapes_col:
     left_col,middle_col,right_col = st.columns([1,2,1])
     with middle_col:
         if st.button("Community Shapes"):
             st.switch_page("pages/community_shapes.py")
+        if st.button("Quadratic Solver"):
+            st.switch_page("pages/quadratic_solver.py")
 with make_a_shape_col:
     left_col,middle_col,right_col = st.columns([1,2,1])
     with middle_col:

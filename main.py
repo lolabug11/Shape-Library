@@ -5,7 +5,8 @@ pg = st.navigation([
     st.Page('pages/home.py',title="Home"),
     st.Page('pages/calculator.py',title= "Calculator"),
     st.Page('pages/make_a_shape.py',title= "Make a Shape"),
-    st.Page('pages/community_shapes.py',title= 'Community Shapes')
+    st.Page('pages/community_shapes.py',title= 'Community Shapes'),
+    st.Page('pages/quadratic_solver.py',title= 'Quadratic Solver')
 ],position="hidden")
 
 pg.run()
